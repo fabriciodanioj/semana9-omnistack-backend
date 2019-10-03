@@ -1,16 +1,17 @@
 const express = require("express");
+const routes = require("./routes");
+const mongoose = require("mongoose");
+
 
 const app = express();
 
-// GET, PUT, POST, DELETE
-// req.query => Acessar query params (Para filtros)
-// req.params => Acessar route params (Para edição e DELETE)
-// req.body => Acessar corpo da requisição (Para edição e criação)
-
-app.use(express.json());
-
-app.post("/users", (req, res) => {
-    return res.json(req.body)
+mongoose.connect("mongodb+srv://fabriciodanioj:card3x@omnistack-zwfcd.mongodb.net/semana09?retryWrites=true&w=majority",{ 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
 });
 
-app.listen(3333);   
+app.use(express.json());
+app.use(routes);
+
+
+app.listen(3000);   
